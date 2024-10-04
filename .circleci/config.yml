@@ -2,7 +2,7 @@ version: 2.1
 # Uses the official Cypress Orb
 # https://circleci.com/developer/orbs/orb/cypress-io/cypress
 orbs:
-  cypress: cypress-io/cypress@3
+  cypress: cypress-io/cypress@3.4.0
 workflows:
   build:
     jobs:
@@ -12,8 +12,8 @@ workflows:
           # Records in parallel to Cypress Cloud 
           # https://docs.cypress.io/guides/guides/parallelization
           install-browsers: true
-          parallelism: 2 # Uses 2 parallel instances
+          parallelism: 4 # Uses 2 parallel instances
           # Starts web server for E2E tests - replace with your own server invocation
           # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          start-command: npm run start
+          #start-command: npm  start
           cypress-command: 'npx cypress run --record --parallel --browser chrome'
