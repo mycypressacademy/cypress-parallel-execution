@@ -4,25 +4,17 @@ name: Cypress Tests
 on: [push]
 jobs:
   cypress-run:
-    runs-on: macos-12
-    #macos-15-large
+    runs-on: ubuntu-latest
+    #macos-12
+    #windows-latest
     # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
     # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     # Also see warning here https://github.com/cypress-io/github-action#parallel
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
       matrix:
-        containers: [1, 2, 3] # Uses 4 parallel instances
+        containers: [1, 2, 3, 4, 5, 6] # Uses 6 parallel instances
     steps:
-     # - uses: browser-actions/setup-chrome@v1
-     #   with:
-      #       browser: chrome
-       #      version: latest
-     # - uses: browser-actions/setup-firefox@v1
-     #   with:
-      #       browser: firefox
-        #     version: latest
-      #- name: Checkout
       -  uses: actions/checkout@v4
       - name: Cypress run 
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -34,7 +26,7 @@ jobs:
           #wait-on: 'http://localhost:3000' # Waits for above
           # Records to Cypress Cloud 
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-          browser: edge
+          browser: chrome
           headed: true
           record: true
           parallel: true # Runs test in parallel using settings above
